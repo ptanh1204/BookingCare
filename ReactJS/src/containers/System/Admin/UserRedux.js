@@ -26,6 +26,7 @@ class UserRedux extends Component {
             phoneNumber: '',
             address: '',
             gender: '',
+            position: '',
             role: '',
             avatar: '',
 
@@ -76,6 +77,10 @@ class UserRedux extends Component {
             })
         }
         if (prevProps.listUsers !== this.props.listUsers) {
+            let arrRoles = this.props.roleRedux;
+            let arrPositions = this.props.positionRedux;
+            let arrGenders = this.props.genderRedux;
+
             this.setState({
                 email: '',
                 password: '',
@@ -83,8 +88,9 @@ class UserRedux extends Component {
                 lastName: '',
                 phoneNumber: '',
                 address: '',
-                gender: '',
-                role: '',
+                role: arrRoles && arrRoles.length > 0 ? arrRoles[0].key : '',
+                position: arrPositions && arrPositions.length > 0 ? arrPositions[0].key : '',
+                gender: arrGenders && arrGenders.length > 0 ? arrGenders[0].key : '',
                 avatar: '',
             })
         }
@@ -148,13 +154,29 @@ class UserRedux extends Component {
             ...copyState
         })
     }
+
+    handleEditUserFromParent = (user) => {
+        console.log('check handle edit user from parent:', user)
+        this.setState({
+            email: user.email,
+            password: 'HARDCODE',
+            firstName: user.firstName,
+            lastName: user.lastName,
+            phoneNumber: user.phonenumber,
+            address: user.address,
+            rol: user.roleId,
+            position: user.positionId,
+            gender: user.gender,
+            avatar: user.avatar,
+        })
+    }
     render() {
         let genders = this.state.genderArr;
         let roles = this.state.roleArr;
         let positions = this.state.positionArr;
         let language = this.props.language;
         let isGetRenders = this.props.isLoadingGender;
-        let { email, password, firstName, lastName, phoneNumber, address, gender, role, avatar, } = this.state;
+        let { email, password, firstName, lastName, phoneNumber, address, gender, position, role, avatar, } = this.state;
         return (
             <div className='user-redux-container'>
                 <div className="title" >User Redux</div>
@@ -215,6 +237,7 @@ class UserRedux extends Component {
                                 <div className='col-3'>
                                     <label><FormattedMessage id="manage-user.gender" /></label>
                                     <select className='form-control'
+                                        value={gender}
                                         onChange={(event) => { this.onChangeInput(event, 'gender') }}
                                     >
                                         {genders && genders.length > 0 &&
@@ -234,6 +257,8 @@ class UserRedux extends Component {
                                 <div className='col-3'>
                                     <label><FormattedMessage id="manage-user.position" /></label>
                                     <select className='form-control'
+                                        value={position}
+
                                         onChange={(event) => { this.onChangeInput(event, 'position') }}
                                     >
                                         {positions && positions.length > 0
@@ -253,6 +278,7 @@ class UserRedux extends Component {
                                 <div className='col-3'>
                                     <label><FormattedMessage id="manage-user.role" /></label>
                                     <select className='form-control'
+                                        value={role}
                                         onChange={(event) => { this.onChangeInput(event, 'role') }}
                                     >
                                         {roles && roles.length > 0
@@ -290,7 +316,8 @@ class UserRedux extends Component {
                                 </div>
 
                                 <div className='col-12 mb-5'>
-                                    <TableManagerUser />
+                                    <TableManagerUser
+                                        handleEditUserFromParentKey={this.handleEditUserFromParent} />
                                 </div>
                             </div>
                         </div>
