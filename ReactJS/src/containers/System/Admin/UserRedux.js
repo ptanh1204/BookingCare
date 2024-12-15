@@ -18,6 +18,7 @@ class UserRedux extends Component {
             roleArr: [],
             previewImgURL: '',
             isOpen: false,
+
             email: '',
             password: '',
             firstName: '',
@@ -27,6 +28,7 @@ class UserRedux extends Component {
             gender: '',
             role: '',
             avatar: '',
+
 
         }
     }
@@ -73,6 +75,19 @@ class UserRedux extends Component {
                 role: arrRoles && arrRoles.length > 0 ? arrRoles[0].key : ''
             })
         }
+        if (prevProps.listUsers !== this.props.listUsers) {
+            this.setState({
+                email: '',
+                password: '',
+                firstName: '',
+                lastName: '',
+                phoneNumber: '',
+                address: '',
+                gender: '',
+                role: '',
+                avatar: '',
+            })
+        }
     }
 
     handleOnChangeImage = (event) => {
@@ -96,7 +111,8 @@ class UserRedux extends Component {
     handleSaveUser = () => {
         let isValid = this.chechValidateInput();
         if (isValid === false) return;
-        console.log('check before submiit: ', this.state)
+
+
         //fire redux actions
         this.props.createNewUser({
             email: this.state.email,
@@ -109,6 +125,7 @@ class UserRedux extends Component {
             roleId: this.state.role,
             positionId: this.state.position,
         })
+
     }
 
     chechValidateInput = () => {
@@ -272,7 +289,7 @@ class UserRedux extends Component {
                                         onClick={() => this.handleSaveUser()}><FormattedMessage id="manage-user.save" /></button>
                                 </div>
 
-                                <div className='col-12'>
+                                <div className='col-12 mb-5'>
                                     <TableManagerUser />
                                 </div>
                             </div>
@@ -301,6 +318,8 @@ const mapStateToProps = state => {
         positionRedux: state.admin.positions,
         roleRedux: state.admin.roles,
         isLoadingGender: state.admin.isLoadingGender,
+        listUsers: state.admin.users,
+
     };
 };
 
@@ -310,6 +329,8 @@ const mapDispatchToProps = dispatch => {
         getPositionStart: () => dispatch(actions.fetchPositionStart()),
         getRoleStart: () => dispatch(actions.fetchRoleStart()),
         createNewUser: (data) => dispatch(actions.createNewUser(data)),
+        fetchUserRedux: () => dispatch(actions.fetchAllUserStart()),
+
 
 
     };
