@@ -1,13 +1,27 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Slider from "react-slick";
-
+import * as actions from '../../../store/actions';
+import { LANGUAGES } from '../../../utils';
 
 
 
 
 
 class Doctor extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            arrDoctors: []
+        }
+    }
+    // componentDidUpdate(prevProps, prevProps, snapshot) {
+    //     if (prevProps.topDoctorsRedux !== this.props.topDoctorsRedux) {
+    //         this.setState({
+    //             arrDoctors: this.props.topDoctorsRedux
+    //         })
+    //     }
+    // }
 
     render() {
 

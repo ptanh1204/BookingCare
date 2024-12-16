@@ -17,9 +17,11 @@ const corsOptions = {
 app.use(cors({ credentials: true, origin: true }));
 //config app
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }))
+// app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({ extended: true }))
 
+app.use(bodyParser.json({ limit: '64mb' }));
+app.use(bodyParser.urlencoded({ limit: '64mb', extended: true }))
 viewEngine(app);
 initWebRoutes(app);
 

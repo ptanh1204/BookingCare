@@ -9,12 +9,10 @@ module.exports = {
                 primaryKey: true,
                 type: Sequelize.INTEGER
             },
-
-            type: {
+            keyMap: {
                 type: Sequelize.STRING
             },
-
-            key: {
+            type: {
                 type: Sequelize.STRING
             },
             valueEn: {
@@ -24,11 +22,11 @@ module.exports = {
                 type: Sequelize.STRING
             },
             createdAt: {
-                allowNull: false,
+                allowNull: true,
                 type: Sequelize.DATE
             },
             updatedAt: {
-                allowNull: false,
+                allowNull: true,
                 type: Sequelize.DATE
             }
         });
