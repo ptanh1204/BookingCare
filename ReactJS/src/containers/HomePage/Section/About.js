@@ -12,26 +12,22 @@ class About extends Component {
         return (
             <div className='section-share section-about'>
                 <div className='section-about-header'>
-                    Truyền thông nói về hỏi dân IT
+                    Đặt lịch khám bệnh
                 </div>
                 <div className='section-about-content'>
                     <div className='content-left'>
                         <iframe width="100%" height="400px"
-                            src="https://www.youtube.com/embed/JvOg0TSvdGU?list=RDJvOg0TSvdGU"
-                            title="WXRDIE - LAVIAI (REMIX) ft. HIEUTHUHAI &amp; 2PILLZ"
-                            frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            referrerpolicy="strict-origin-when-cross-origin"
-                            allowFullscreen>
+                            src="https://www.youtube.com/embed/aUjyYZ-TiWY" title="Lần đầu công khai bảng giá tại Phòng khám Mediplus" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
 
                         </iframe>
                     </div>
                     <div className='content-right'>
                         <p>
-                            Trong video này, chúng ta sẽ hoàn tất việc design giao diện theo trang bookingcare.vn. Chúng ta sẽ hoàn thiện những phần đang còn dang dở, để từ video tiếp theo, chúng ta sẽ bắt đầu làm về backend và react để tạo dữ liệu thật cho trang home design này.
+                            Mediplus là phòng khám chất lượng 5 sao với đa dạng chuyên khoa khám bệnh. Vậy chi phí thăm khám tại đây như thế nào?
                         </p>
                     </div>
                 </div>
-            </div>
+            </div >
         );
     }
 }
